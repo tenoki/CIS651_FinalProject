@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "51108422199",
+    "firebase_url": "https://cis651-final-project-d7186-default-rtdb.firebaseio.com",
+    "project_id": "cis651-final-project-d7186",
+    "storage_bucket": "cis651-final-project-d7186.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:51108422199:android:b85cbd407fc20a554e55b2",
+        "android_client_info": {
+          "package_name": "com.example.myapplication1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1v0cWQNw-ScR1Xs9Pdd-FaD1LRMCb9ZA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

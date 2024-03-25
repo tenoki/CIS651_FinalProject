@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="blue">#0000FF</color>
+    <color name="green">#00FF00</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="violet">#6400FF</color>
+    <color name="sky">#00FFFF</color>
+    <color name="orange">#FF5A00</color>
+    <color name="active_player">#2FFF00</color>
+
+    <!-- Colors added for the firebase specific items -->
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="splashBackground">#225c6e</color>
+    <color name="off_white">#f3f5f6</color>
+    <color name="transparant">#00000000</color>
+</resources>

@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Flip</string>
+    <string name="Easy">Easy</string>
+    <string name="Medium">Medium</string>
+    <string name="Hard">Hard</string>
+    <string name="Score">Score: 0</string>
+    <string name="Exit">X</string>
+    <string name="multiplayer_mode">Multiplayer Mode</string>
+    <string name="player_1">Player 1</string>
+    <string name="player_2">Player 2</string>
+
+
+    <!-- Items added for the firebase connectivity portion -->
+    <string name="firebase_demo">Final Project</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="display_name">Display Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="signup">SIGNUP</string>
+    <string name="login">LOGIN</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="resend_email_verification">Resend Email Verification</string>
+</resources>
