@@ -20,4 +20,14 @@
     <string name="login">LOGIN</string>
     <string name="reset_password">Reset Password</string>
     <string name="resend_email_verification">Resend Email Verification</string>
+
+    <!-- For the menu bar -->
+    <string name="menu_header">User Dashboard</string>
+    <string name="website_url">CIS-651</string>
+    <string name="home">Home</string>
+    <string name="logout">Logout</string>
+    <string name="highScores">High Scores</string>
+    <string name="search">Search</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
 </resources>

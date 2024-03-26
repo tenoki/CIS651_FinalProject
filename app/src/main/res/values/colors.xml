@@ -18,4 +18,20 @@
     <color name="splashBackground">#225c6e</color>
     <color name="off_white">#f3f5f6</color>
     <color name="transparant">#00000000</color>
+
+    <!-- For the Menu Bar -->
+    <color name="Accent"        >#FFC107</color>
+    <color name="AccentGold"    >#FFD700</color>
+    <color name="AccentPurple"  >#800080</color>
+    <color name="Black"         >#FF000000</color>
+    <color name="Divider"       >#BDBDBD</color>
+    <color name="LavenderFloral">#B57EDC</color>
+    <color name="LavenderWeb"   >#E6E6FA</color>
+    <color name="LightPrimary"  >#E1BEE7</color>
+    <color name="Primary"       >#9C27B0</color>
+    <color name="PrimaryDark"   >#7B1FA2</color>
+    <color name="PrimaryText"   >#212121</color>
+    <color name="SecondaryText" >#757575</color>
+    <color name="Text_Icons"    >#FFFFFF</color>
+    <color name="White"         >#FFFFFFFF</color>
 </resources>

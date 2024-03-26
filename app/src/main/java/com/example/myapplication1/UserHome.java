@@ -10,9 +10,13 @@ import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -25,12 +29,14 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -47,7 +53,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-public class UserHome extends AppCompatActivity {
+public class UserHome extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //Class Variables.
     boolean canDelete = false; //Used to determine if the user can delete the current post.
     private FirebaseAuth mAuth;
@@ -60,6 +66,11 @@ public class UserHome extends AppCompatActivity {
             new ActivityResultContracts.StartActivityForResult(), this::onActivityResult);
     private final ActivityResultLauncher<String[]> multiplePermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), this::onActivityResult);
+    //For the Drawer layout
+    //Variables
+    private Toolbar mainToolbar = null;
+    private DrawerLayout drawerLayout = null;
+    private NavigationView navigationView = null;
 
 
     /*This function will attempt to create and image file on the device and return a file URI. If
@@ -89,6 +100,23 @@ public class UserHome extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
 
+        //Object Hooks
+        drawerLayout = findViewById( R.id.layout_drawer );
+        navigationView = findViewById( R.id.navigation_view );
+        mainToolbar = (Toolbar) findViewById( R.id.main_toolbar);
+
+        //Toolbar setup.
+        setSupportActionBar( mainToolbar );
+
+        //Navigation Drawer Menu Setup.
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawerLayout, mainToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close );
+        drawerLayout.addDrawerListener( toggle );
+        toggle.syncState();
+
+        //Allow the menu items to be selectable.
+        navigationView.bringToFront();
+        navigationView.setNavigationItemSelectedListener( this );
+
         RecyclerView recyclerView=findViewById(R.id.recylcer_view);
         LinearLayoutManager layoutManager=new LinearLayoutManager(this);
         layoutManager.setOrientation(RecyclerView.VERTICAL);
@@ -103,7 +131,35 @@ public class UserHome extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
 //        getMenuInflater().inflate(R.menu.actionbar_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+//        return super.onCreateOptionsMenu(menu);
+        //Place the user interactive items on the toolbar.
+        MenuInflater inflater = this.getMenuInflater();
+        inflater.inflate( R.menu.menu_toolbar, menu );
+
+        //Add the dynamic scaling of the search icon to the toolbar.
+        MenuItem.OnActionExpandListener onActionExpandListener = new MenuItem.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(@NonNull MenuItem item) {
+                Toast.makeText(UserHome.this, "Search Text Expanded", Toast.LENGTH_SHORT).show();
+                return true;
+            } //End callback function onMenuItemActionExpanded
+
+            @Override
+            public boolean onMenuItemActionCollapse(@NonNull MenuItem item) {
+                Toast.makeText( UserHome.this, "Search Text Collapsed", Toast.LENGTH_SHORT).show();
+                return true;
+            } //End callback function onMenuItemActionCollapsed
+        };
+        //Set the listener to active for the search item
+        menu.findItem( R.id.search_movie ).setOnActionExpandListener( onActionExpandListener );
+
+        //Now create the search view.
+        SearchView searchView = (SearchView) menu.findItem(R.id.search_movie).getActionView();
+        //Set the search hint
+        searchView.setQueryHint( getText( R.string.search) );
+
+
+        return true;
     } //End onCreateOptionMenu callback function.
 
 
@@ -126,9 +182,24 @@ public class UserHome extends AppCompatActivity {
             return true;
         } //End if editProfile selected.
 */
-        return super.onOptionsItemSelected(item);
+//        return super.onOptionsItemSelected(item);
+        if( item.getItemId() == R.id.about_me ){
+            Toast.makeText(this, "Button clicked: About Me", Toast.LENGTH_SHORT).show();
+        }
+        else if( item.getItemId() == R.id.im_feeling_lucky ){
+            Toast.makeText(this, "Button clicked: Random Movie", Toast.LENGTH_SHORT).show();
+        }
+        else if( item.getItemId() == R.id.search_movie ){
+            Toast.makeText(this, "Button clicked: Search Movie", Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
     } //End onOptionsItemSelected callback function.
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return true;
+    }
 
     private void createTestEntry(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -208,4 +279,5 @@ public class UserHome extends AppCompatActivity {
         intent.putExtra("uri", currentPhotoPath);
         startActivity(intent);
     } //End onActivity overloaded callback function.
+
 } //End class UserHome definition and implementation

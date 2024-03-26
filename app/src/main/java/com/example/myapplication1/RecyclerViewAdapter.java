@@ -134,7 +134,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter< RecyclerViewAdapt
 
 
                 Log.d("DISPLAY_NAME", playerName);
-                holder.player_v.setText("Player: " + currentUser.getDisplayName());
+                String playerDisplayName = dataSnapshot.child("playerName").getValue().toString();
+                if(playerDisplayName == null){ playerDisplayName = "";}
+                holder.player_v.setText("Player: " + playerDisplayName);
                 holder.score_v.setText("Score: " + dataSnapshot.child("score_value").getValue().toString() +
                                        " (" + dataSnapshot.child("mode").getValue().toString() + ")" );
                 Long longDate = Long.parseLong(Objects.requireNonNull(dataSnapshot.child("timeStamp").getValue()).toString());
